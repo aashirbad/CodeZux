@@ -23,19 +23,21 @@ public class UserRegistrationController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		String Uname = request.getParameter("Uname");
 		String Uemail = request.getParameter("Uemail");
 		String Upass = request.getParameter("Upass");
 		
-		UserRegistrationBean user = new UserRegistrationBean();
+		UserRegistrationBean userRegBean = new UserRegistrationBean();
 		
-		user.setUname(Uname);
-		user.setUemail(Uemail);
-		user.setUpass(Upass);
+		userRegBean.setUname(Uname);
+		userRegBean.setUemail(Uemail);
+		userRegBean.setUpass(Upass);
 		
-		UserRegistrationService U = new UserRegistrationService();
+		UserRegistrationService userService = new UserRegistrationService();
 		try {
-			boolean redgState = U.userRegistration(user);
+			boolean redgState = userService.userRegistration(userRegBean);
 		}
 		
 		catch (Exception e) {
