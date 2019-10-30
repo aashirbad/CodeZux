@@ -11,7 +11,12 @@ public class UserRegistrationDAO {
 		
 		Connection con = null;
 		con =  DBConnection.getConnect();
-		preparedStatement ps = con.prepareStatement("insert into)
+		try {
+			PreparedStatement ps = con.prepareStatement("insert into test.userProfile values "+ user.get);
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
 		
 		
 		

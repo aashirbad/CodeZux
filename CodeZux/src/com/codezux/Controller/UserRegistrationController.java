@@ -13,14 +13,7 @@ import com.codezux.Service.UserRegistrationService;
 @WebServlet("/UserRegistrationAction")
 public class UserRegistrationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public UserRegistrationController() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -37,7 +30,7 @@ public class UserRegistrationController extends HttpServlet {
 		
 		UserRegistrationService userService = new UserRegistrationService();
 		try {
-			boolean redgState = userService.userRegistration(userRegBean);
+			boolean redgState = userService.userRegistration( userRegBean );
 		}
 		
 		catch (Exception e) {
