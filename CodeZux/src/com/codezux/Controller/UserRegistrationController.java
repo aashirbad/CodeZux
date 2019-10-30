@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.codezux.Bean.UserRegistrationBean;
-import com.codezux.Service.UserRegistrationService;
+import com.codezux.Service.UserService;
 
 @WebServlet("/UserRegistrationAction")
 public class UserRegistrationController extends HttpServlet {
@@ -28,9 +28,13 @@ public class UserRegistrationController extends HttpServlet {
 		userRegBean.setUemail(Uemail);
 		userRegBean.setUpass(Upass);
 		
-		UserRegistrationService userService = new UserRegistrationService();
+		UserService userService = new UserService();
+		
+		/*
+		 * Register into database
+		 */
 		try {
-			boolean redgState = userService.userRegistration( userRegBean );
+			boolean flagState = userService.userRegistration( userRegBean );
 		}
 		
 		catch (Exception e) {
