@@ -9,9 +9,15 @@ public class UserService
 {
 	UserRegistrationDAO userDao = new UserRegistrationDAO();
 	
-	public boolean userRegistration(UserRegistrationBean UserRegBeans) throws SQLException {
-	
-		return userDao.registrationUser( UserRegBeans );
+	public int userRegistration(UserRegistrationBean UserRegBeans) throws SQLException {
+		int flag;
+		flag =userDao.registrationUser( UserRegBeans );
+		return flag;
+//		if(flag != 0 )
+//		{
+//			userDao.update( UserRegBeans);
+//		}
+//		return flag;
 		
 		
 	}

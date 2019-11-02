@@ -21,7 +21,7 @@ public class UserRegistrationBean {
 		this.Uemail = Uemail;
 	}
 	
-	public String Upass() {
+	public String getUpass() {
 		return Upass;
 	}
 	
