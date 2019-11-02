@@ -15,7 +15,7 @@ public class UserRegistrationDAO {
 		try {
 
 			PreparedStatement ps = con
-					.prepareStatement("INSERT INTO test.user_profile " + "(name,email_id) VALUES (?,?)");
+					.prepareStatement("INSERT INTO my_prj.user_profile " + "(name,email_id) VALUES (?,?)");
 			ps.setString(1, userBean.getUname());
 			ps.setString(2, userBean.getUemail());
 			setPassword(userBean);
@@ -50,7 +50,7 @@ public class UserRegistrationDAO {
 		con = DBConnection.getConnect();
 		try {
 
-			PreparedStatement ps = con.prepareStatement("INSERT INTO test.user_auth " + "(password) VALUES (?)");
+			PreparedStatement ps = con.prepareStatement("INSERT INTO my_prj.user_authenticate " + "(password) VALUES (?)");
 			ps.setString(1, userBean.getUpass());
 			ps.execute();
 			}
