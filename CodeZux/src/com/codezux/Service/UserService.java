@@ -3,22 +3,27 @@ package com.codezux.Service;
 import java.sql.SQLException;
 
 import com.codezux.Bean.UserRegistrationBean;
-import com.codezux.DAO.UserRegistrationDAO;
+import com.codezux.DAO.UserDao;
 
 public class UserService 
 {
-	UserRegistrationDAO userDao = new UserRegistrationDAO();
+	UserDao userDao = new UserDao();
 	
+	
+	// User Registratioin
 	public int userRegistration(UserRegistrationBean UserRegBeans) throws SQLException {
 		int flag;
 		flag =userDao.registrationUser( UserRegBeans );
 		return flag;
-//		if(flag != 0 )
-//		{
-//			userDao.update( UserRegBeans);
-//		}
-//		return flag;
+
 		
+		
+	}
+	// User Authentication
+	public boolean userAuthenticate(int uid, String upass) {
+		
+		return userDao.authenticateUser(uid,upass);
+			
 		
 	}
 }

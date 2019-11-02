@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class UserRegistrationDAO {
+public class UserDao {
 	public int registrationUser(UserRegistrationBean userBean) {
 
 		Connection con = null;
@@ -40,7 +40,7 @@ public class UserRegistrationDAO {
 	
 	
 	/*
-	 * 			Update pass
+	 * 			Update pass In user_authenticate table
 	 */
 
 	private void setPassword(UserRegistrationBean userBean) {
@@ -58,34 +58,42 @@ public class UserRegistrationDAO {
 					e.printStackTrace();
 		}
 	}
-		
-		/*
-	public void update(UserRegistrationBean userBean) {
 
+	
+	/*
+	 * Log In Authentication
+	 */
+	public boolean authenticateUser(int uid, String upass) {
+		
 		Connection con = null;
 		con = DBConnection.getConnect();
 		try {
-
-			PreparedStatement ps = con.prepareStatement("INSERT INTO prj1.userAuth " + "(password) VALUES (?)",Statement.RETURN_GENERATED_KEYS);
-
-			ps.setString(1, userBean.getUpass());
-			ps.executeUpdate();
-
+			PreparedStatement ps = con.prepareStatement("select uid,password from my_prj.user_authenticate where uid = (?) and password =(?) ");
+			ps.setInt(1, uid);
+			ps.setString(2, upass);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next())
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+			
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		}
-
-		finally {
+		
+		finally
+		{
 			try {
 				con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-
-		} 
 		}
-		
-		
-	*/
+		return false;
 	}
+		
+}
