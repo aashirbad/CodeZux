@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.codezux.Bean.UserProfilePojo;
 import com.codezux.Service.UserService;
 
 @WebServlet("/LogInAction")
@@ -21,10 +22,24 @@ public class LogInController extends HttpServlet {
 		// call to the service method
 		UserService user = new UserService();
 		boolean flag = user.userAuthenticate(uid,upass);
-	
+		UserProfilePojo userProf = new UserProfilePojo();
 		if(flag == true)
 		{
-			response.getWriter().print("Hey You are now in our world...");
+		
+			/*
+			 * java.lang.NullPointerException
+	at com.codezux.DAO.UserDao.getUserProfileDetailsById(UserDao.java:122)
+	at com.codezux.Service.UserService.getUserProfileDetailById(UserService.java:35)
+
+			 */
+		//	userProf = user.getUserProfileDetailById(uid);
+			
+			
+			//request.getSession().setAttribute("user", userProf);
+			
+			request.getSession().setAttribute("uid", uid);
+			request.getRequestDispatcher("profile.jsp").forward(request, response);
+			
 		}
 		else
 		{

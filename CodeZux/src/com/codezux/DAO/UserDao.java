@@ -1,5 +1,6 @@
 package com.codezux.DAO;
 
+import com.codezux.Bean.UserProfilePojo;
 import com.codezux.Bean.UserRegistrationBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +9,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UserDao {
+	
+	/*
+	 *   	user Registration
+	 */
 	public int registrationUser(UserRegistrationBean userBean) {
 
 		Connection con = null;
@@ -74,6 +79,7 @@ public class UserDao {
 			ResultSet rs = ps.executeQuery();
 			if(rs.next())
 			{
+				
 				return true;
 			}
 			else
@@ -94,6 +100,70 @@ public class UserDao {
 			}
 		}
 		return false;
+	}
+
+/*
+ * 
+ * 
+ * 		Some issue
+ * java.lang.NullPointerException
+	at com.codezux.DAO.UserDao.getUserProfileDetailsById(UserDao.java:122)
+	at com.codezux.Service.UserService.getUserProfileDetailById(UserService.java:35)
+ * 
+ */
+	
+	// give user Details
+	public UserProfilePojo getUserProfileDetailsById(int uid) {
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		UserProfilePojo userProf = null;
+		try {
+			
+			con = DBConnection.getConnect();
+			ps = con.prepareStatement("select user_profile.name,user_authenticate.uid from my_prj.user_profile,my_prj.user_authenticate  where user_authenticate.uid = ? ");
+			ps.setInt(1, uid);
+		
+			ResultSet rs = ps.executeQuery();
+			if( rs .next())
+			{
+			userProf.setuId(uid);
+				userProf.setName(rs.getString("user_profile.name"));
+				userProf.setCity(rs.getString("city"));
+				userProf.setCollege(rs.getString("college"));
+				//userProf.setDob(rs.getDate("dob"));
+				userProf.setEmail(rs.getString("email"));
+				userProf.setMobile(rs.getInt("mobile_number"));
+				userProf.setPin(rs.getInt("pin"));
+				userProf.setState(rs.getString("state"));
+	
+				
+				System.out.println(uid + "\t " + rs.getString("name") + " \t" );
+			}
+			
+		} catch (NullPointerException e) {
+			
+			System.out.println("Please fill reg form");
+			
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally
+		{
+			try {
+				ps.close();
+				con.close();
+			}
+			 catch (SQLException e) {
+			
+				e.printStackTrace();}
+	}
+
+
+
+		
+		return userProf;
 	}
 		
 }

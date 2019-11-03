@@ -4,7 +4,6 @@ public class UserRegistrationBean {
 	private String Uname;
 	private String Uemail;
 	private String Upass;
-	
 	public String getUname() {
 		return Uname;
 	}
