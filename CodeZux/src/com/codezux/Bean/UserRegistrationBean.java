@@ -4,7 +4,6 @@ public class UserRegistrationBean {
 	private String Uname;
 	private String Uemail;
 	private String Upass;
-	
 	public String getUname() {
 		return Uname;
 	}
@@ -21,7 +20,7 @@ public class UserRegistrationBean {
 		this.Uemail = Uemail;
 	}
 	
-	public String Upass() {
+	public String getUpass() {
 		return Upass;
 	}
 	

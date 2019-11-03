@@ -14,34 +14,34 @@ import com.codezux.Service.UserService;
 public class UserRegistrationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		String Uname = request.getParameter("Uname");
-		String Uemail = request.getParameter("Uemail");
-		String Upass = request.getParameter("Upass");
-		
+		String uName = request.getParameter("Uname");
+		String uEmail = request.getParameter("Uemail");
+		String uPass = request.getParameter("Upass");
+
 		UserRegistrationBean userRegBean = new UserRegistrationBean();
-		
-		userRegBean.setUname(Uname);
-		userRegBean.setUemail(Uemail);
-		userRegBean.setUpass(Upass);
-		
+
+		userRegBean.setUname(uName);
+		userRegBean.setUemail(uEmail);
+		userRegBean.setUpass(uPass);
+
 		UserService userService = new UserService();
-		
+
 		/*
 		 * Register into database
 		 */
 		try {
-			boolean flagState = userService.userRegistration( userRegBean );
+			int flag = userService.userRegistration(userRegBean);
+			System.out.print(flag + " successfully ");
 		}
-		
+
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/* if redgState True make sure to redirected to login page */
 
 }
