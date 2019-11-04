@@ -43,8 +43,8 @@ public class LogInController extends HttpServlet {
 		}
 		else
 		{
-			response.getWriter().print("Sorry ...U may entered Wrong credentials ...\n try again ...");
-			response.sendRedirect("login.jsp");
+			request.setAttribute("error", "Username or password incorrect");
+			request.getRequestDispatcher("login.jsp").forward(request, response);			
 			
 		}
 	}

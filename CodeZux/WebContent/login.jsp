@@ -9,6 +9,7 @@
 <body>
 	<h1>Login Page</h1>
 
+	<font color="red">${error }</font>
 	<form action ="LogInAction"  method = "post">
 		<table>
 
